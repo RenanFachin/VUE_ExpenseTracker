@@ -1,5 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue';
+import { useToast } from '@/components/ui/toast/use-toast'
+const { toast } = useToast()
 
 // Componentes
 import Balance from '@/components/Balance.vue'
@@ -44,14 +46,34 @@ const totalExpenses = computed(() => {
       return acc + transaction.amount
     }, 0).toFixed(2)
 })
+
+function generateUniqueId(){
+  return Math.floor(Math.random() * 10000)
+}
+
+// ADD transaction
+function handleTransactionSubmitted(data){
+  const {text, amount} = data
+
+  transactions.value.push({
+    id: generateUniqueId(),
+    text: text,
+    amount: amount
+  })
+
+  toast({
+    description: `Transaction ${text} of value ${amount} was registered successfully`
+  })
+
+}
 </script>
 
 <template>
   <div class="container" >
-    <Balance :total="total" />
+    <Balance :total="Number(total)" />
     <IncomeExpenses :income="Number(totalIncome)" :expenses="Number(totalExpenses)" />
     <TransactionList :allTransactions="transactions" />
-    <AddTransaction />
+    <AddTransaction @transcationSubmitted="handleTransactionSubmitted"/>
   </div>
 
   <Toaster />

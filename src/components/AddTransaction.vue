@@ -5,15 +5,29 @@ import { ref } from 'vue'
 const text = ref('')
 const amount = ref('')
 
+// Criando um evento custom para sinalizar
+const emit = defineEmits(['transcationSubmitted'])
+
 const { toast } = useToast()
 
 function handleSubmit() {
-  console.log(text.value, amount.value)
+  if (!text.value || !amount.value) {
+    return toast({
+      variant: 'destructive',
+      title: 'Both fields must be filled',
+    });
+  }
 
-  toast({
-    title: 'Scheduled: Catch up',
-    description: 'Friday, February 10, 2023 at 5:57 PM',
-  });
+  const transactionData = {
+    text: text.value,
+    amount: parseFloat(amount.value)
+  }
+
+  // Chamando o custom event
+  emit('transcationSubmitted', transactionData)
+  
+  text.value = ''
+  amount.value = ''
 }
 </script>
 
