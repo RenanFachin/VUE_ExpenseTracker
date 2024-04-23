@@ -7,12 +7,12 @@ A aplicação é criada utilizando Vue 3 e o padrão de composition API.
 ## Requisitos
 
 ### Requisitos funcionais
-- [ ] O usuário deve poder cadastrar uma nova despesa
-- [ ] O usuário deve poder cadastrar uma nova entrada de renda
-- [ ] O usuário deve ser capaz de visualizar seu histórico de registros  
+- [x] O usuário deve poder cadastrar uma nova despesa
+- [x] O usuário deve poder cadastrar uma nova entrada de renda
+- [x] O usuário deve ser capaz de visualizar seu histórico de registros  
 
 ### Requisitos não-funcionais
-- [ ]  Os registros devem ficar salvos no localstorage do usuário
+- [x]  Os registros devem ficar salvos no localstorage do usuário
 
 ## Instalação
 

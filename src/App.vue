@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useToast } from '@/components/ui/toast/use-toast'
 const { toast } = useToast()
 
@@ -14,12 +14,15 @@ import Toaster from '@/components/ui/toast/Toaster.vue'
 // Utils
 // tudo que for reativo devemos utilizar ref
 
-const transactions = ref([
-  { id: 1, text: 'Flower', amount: -19.99 },
-  { id: 2, text: 'Salary', amount: 419.99 },
-  { id: 3, text: 'Book', amount: -39 },
-  { id: 4, text: 'Book', amount: -10.10 },
-])
+const transactions = ref([])
+
+onMounted(() => {
+  const savedTransactions = JSON.parse(localStorage.getItem('expense_tracker'))
+
+  if(savedTransactions){
+    transactions.value = savedTransactions
+  }
+})
 
 // Get Total
 const total = computed(() => {
@@ -61,6 +64,8 @@ function handleTransactionSubmitted(data) {
     amount: amount
   })
 
+  saveTransactionsToLocalStorage()
+
   toast({
     description: `Transaction ${text} of value ${amount} was registered successfully`
   })
@@ -71,9 +76,16 @@ function handleTransactionSubmitted(data) {
 function handleTransactionDeleted(id) {
   transactions.value = transactions.value.filter((transaction) => transaction.id !== id)
 
+  saveTransactionsToLocalStorage()
+
   toast({
     description: `Transaction deleted`
   })
+}
+
+// Save to localstorage
+function saveTransactionsToLocalStorage() {
+  localStorage.setItem('expense_tracker', JSON.stringify(transactions.value))
 }
 </script>
 
