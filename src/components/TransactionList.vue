@@ -20,7 +20,7 @@ function handleDeleteTransaction(id){
 
 
 <template>
-  <h3>History</h3>
+  <h3 class="text-zinc-400">History</h3>
   <ul id="list" class="list">
     <li v-for="transaction in allTransactions" v-bind:key="transaction.id"
       v-bind:class="transaction.amount < 0 ? 'minus' : 'plus'">
