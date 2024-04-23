@@ -21,7 +21,7 @@ body {
 
 .container {
   margin: 30px auto;
-  width: 500px;
+  width: 550px;
 }
 
 h1 {
@@ -113,6 +113,7 @@ input[type='number'] {
 }
 
 .list li {
+  font-size: 14px;
   background-color: #fff;
   box-shadow: var(--box-shadow);
   color: #333;
