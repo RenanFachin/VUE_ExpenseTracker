@@ -1,4 +1,5 @@
 <script setup>
+// defineProps é utilizado para receber propriedades entre componentes
 import { defineProps } from 'vue'
 
 const props = defineProps({

@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 // Compponentes
 import Header from '@/components/Header.vue'
@@ -15,27 +15,23 @@ const transactions = ref([
   { id: 1, text: 'Flower', amount: -19.99 },
   { id: 2, text: 'Salary', amount: 419.99 },
   { id: 3, text: 'Book', amount: -39 },
+  { id: 4, text: 'Book', amount: -10.10 },
 ])
 
+const total = computed(() => {
+  return transactions.value.reduce((acc, transaction) => {
+    return acc + transaction.amount
+  }, 0)
+})
 
-// com o setup, que é um  syntactic sugar for using Composition API inside Single
-// Utilizando componentes
-// export default {
-//   components: {
-//     Header,
-//     Balance,
-//     IncomeExpenses,
-//     TransactionList,
-//     AddTransaction
-//   }
-// }
+
 </script>
 
 <template>
   <Header />
 
   <div class="container">
-    <Balance />
+    <Balance :total="total"/>
     <IncomeExpenses />
     <TransactionList :allTransactions="transactions"/>
     <AddTransaction />
