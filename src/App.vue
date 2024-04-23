@@ -1,12 +1,13 @@
 <script setup>
 import { ref, computed } from 'vue';
 
-// Compponentes
-import Header from '@/components/Header.vue'
+// Componentes
 import Balance from '@/components/Balance.vue'
-import IncomeExpenses from '@/components/IncomeExpenses.vue';
-import TransactionList from '@/components/TransactionList.vue';
-import AddTransaction from '@/components/AddTransaction.vue';
+import IncomeExpenses from '@/components/IncomeExpenses.vue'
+import TransactionList from '@/components/TransactionList.vue'
+import AddTransaction from '@/components/AddTransaction.vue'
+import Toaster from '@/components/ui/toast/Toaster.vue'
+
 
 // Utils
 // tudo que for reativo devemos utilizar ref
@@ -43,17 +44,15 @@ const totalExpenses = computed(() => {
       return acc + transaction.amount
     }, 0).toFixed(2)
 })
-
-
 </script>
 
 <template>
-  <Header />
-
-  <div class="container">
+  <div class="container" >
     <Balance :total="total" />
     <IncomeExpenses :income="Number(totalIncome)" :expenses="Number(totalExpenses)" />
     <TransactionList :allTransactions="transactions" />
     <AddTransaction />
   </div>
+
+  <Toaster />
 </template>
