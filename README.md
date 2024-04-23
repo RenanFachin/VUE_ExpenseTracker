@@ -1,29 +1,27 @@
-# vue-expense-tracker
+# VUE-expense-tracker
 
-This template should help get you started developing with Vue 3 in Vite.
+Expense Tracker é uma aplicação desenvolvida com VUEJS e tem a finalidade de ajudar no gerenciamento dos gastos de uma pessoa.
 
-## Recommended IDE Setup
+A aplicação é criada utilizando Vue 3 e o padrão de composition API.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Requisitos
 
-## Customize configuration
+### Requisitos funcionais
+- [ ] O usuário deve poder cadastrar uma nova despesa
+- [ ] O usuário deve poder cadastrar uma nova entrada de renda
+- [ ] O usuário deve ser capaz de visualizar seu histórico de registros  
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+### Requisitos não-funcionais
+- [ ]  Os registros devem ficar salvos no localstorage do usuário
 
-## Project Setup
+## Instalação
 
-```sh
-npm install
-```
+```bash
+# Faça o clone do repositório
+  git clone https://github.com/RenanFachin/VUE_ExpenseTracker.git
 
-### Compile and Hot-Reload for Development
+# Instale as depêndencias
+  npm install
 
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+# Executando o projeto no ambiente de desenvolvimento
+  npm run dev
