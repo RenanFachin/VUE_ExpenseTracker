@@ -25,3 +25,5 @@ A aplicação é criada utilizando Vue 3 e o padrão de composition API.
 
 # Executando o projeto no ambiente de desenvolvimento
   npm run dev
+```
+
