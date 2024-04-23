@@ -18,10 +18,30 @@ const transactions = ref([
   { id: 4, text: 'Book', amount: -10.10 },
 ])
 
+// Get Total
 const total = computed(() => {
   return transactions.value.reduce((acc, transaction) => {
     return acc + transaction.amount
   }, 0)
+})
+
+// Filtrar pelo tipo de receita e após fazer um somatório
+// Get Income -> filter + reduce
+const totalIncome = computed(() => {
+  return transactions.value
+    .filter((transaction) => transaction.amount > 0)
+    .reduce((acc, transaction) => {
+      return acc + transaction.amount
+    }, 0).toFixed(2)
+})
+
+// Get Expenses -> filter + reduce
+const totalExpenses = computed(() => {
+  return transactions.value
+    .filter((transaction) => transaction.amount < 0)
+    .reduce((acc, transaction) => {
+      return acc + transaction.amount
+    }, 0).toFixed(2)
 })
 
 
@@ -31,9 +51,9 @@ const total = computed(() => {
   <Header />
 
   <div class="container">
-    <Balance :total="total"/>
-    <IncomeExpenses />
-    <TransactionList :allTransactions="transactions"/>
+    <Balance :total="total" />
+    <IncomeExpenses :income="totalIncome" :expenses="totalExpenses" />
+    <TransactionList :allTransactions="transactions" />
     <AddTransaction />
   </div>
 </template>
