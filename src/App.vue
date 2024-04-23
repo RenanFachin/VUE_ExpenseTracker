@@ -47,13 +47,13 @@ const totalExpenses = computed(() => {
     }, 0).toFixed(2)
 })
 
-function generateUniqueId(){
+function generateUniqueId() {
   return Math.floor(Math.random() * 10000)
 }
 
 // ADD transaction
-function handleTransactionSubmitted(data){
-  const {text, amount} = data
+function handleTransactionSubmitted(data) {
+  const { text, amount } = data
 
   transactions.value.push({
     id: generateUniqueId(),
@@ -66,14 +66,23 @@ function handleTransactionSubmitted(data){
   })
 
 }
+
+// Delete transaction
+function handleTransactionDeleted(id) {
+  transactions.value = transactions.value.filter((transaction) => transaction.id !== id)
+
+  toast({
+    description: `Transaction deleted`
+  })
+}
 </script>
 
 <template>
-  <div class="container" >
+  <div class="container">
     <Balance :total="Number(total)" />
     <IncomeExpenses :income="Number(totalIncome)" :expenses="Number(totalExpenses)" />
-    <TransactionList :allTransactions="transactions" />
-    <AddTransaction @transcationSubmitted="handleTransactionSubmitted"/>
+    <TransactionList :allTransactions="transactions" @transactionDeleted="handleTransactionDeleted" />
+    <AddTransaction @transcationSubmitted="handleTransactionSubmitted" />
   </div>
 
   <Toaster />

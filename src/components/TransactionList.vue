@@ -8,6 +8,14 @@ const props = defineProps({
     required: true
   }
 })
+
+// Custom event
+const emit = defineEmits(['transactionDeleted'])
+
+function handleDeleteTransaction(id){
+  emit('transactionDeleted', id)
+}
+
 </script>
 
 
@@ -19,7 +27,7 @@ const props = defineProps({
       {{ transaction.text }}
 
       <span>$ {{ transaction.amount }}</span>
-      <button class="delete-btn">x</button>
+      <button class="delete-btn" @click="handleDeleteTransaction(transaction.id)">x</button>
     </li>
   </ul>
 </template>
